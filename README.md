@@ -1,8 +1,8 @@
 # Participant Signup
 
-**Participant Signup** is a simple Django app for rendering form that sends participant participation on events/contest.
+**Participant Signup** is a simple Django app for rendering form that sends participant entry on events/contest.
 
-![Sample](https://bitbucket.org/jondanao/bandolier/downloads/Screen%20Shot%202013-08-07%20at%202.55.20%20PM.png)
+![Sample](screenshot.png)
 
 ## Quick start
 
