@@ -1,0 +1,14 @@
+{% extends "participant-signup/base.html" %}
+
+{% block content %}
+	<form action="" method="POST" id="participant-signup" class="form-signin">{% csrf_token %}
+		<h2 class="form-signin-heading">Fill-up the form</h2>
+			{% for field in form %}
+				<div class="{% if field.errors %} alert alert-danger{% endif %}">
+					{{ field }}
+				</div>
+			{% endfor %}
+			<input id="participate-btn" class="btn btn-large btn-primary btn-block" type="submit" value="Participate"></input>
+	</form>
+{% endblock content %}
+

@@ -1,0 +1,6 @@
+{% for field in form %}
+	{% csrf_token %}
+	<div class="{% if field.errors %} alert alert-danger{% endif %}">
+		{{ field }}
+	</div>
+{% endfor %}

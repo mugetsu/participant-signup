@@ -1,0 +1,266 @@
+<!doctype html>
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+	<title>Bandolier - Participant SignUp</title>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+
+	<!-- OPEN GRAPH META DATA START -->
+	<meta property="og:title" content="">
+	<meta property="og:type" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<meta property="og:description" content="">
+	<!-- OPEN GRAPH META DATA END -->
+
+	<!-- TWITTER CARDS START -->
+	<meta property="twitter:card" content=""> <!-- content: summary, summary_large_image, photo, gallery, app, player & product -->
+	
+	<!-- all except app -->
+	<meta property="twitter:site" content=""> 
+	<meta property="twitter:creator" content=""> <!-- except player -->
+	<meta property="twitter:title" content="">
+	
+	<!-- all except photo -->
+	<meta property="twitter:description" content=""> 
+	
+	<!-- summary, summary_large_image, photo, player, product -->
+	<meta property="twitter:image" content=""> 
+	
+	<!--photo -->
+	<meta property="twitter:image:width" content="">
+	<meta property="twitter:image:height" content="">
+	
+	<!-- gallery -->
+	<meta property="twitter:image0" content="">
+	<meta property="twitter:image1" content="">
+	<meta property="twitter:image(:nth)" content="">
+	
+	<!-- app -->
+	<meta property="twitter:app:id:iphone" content="">
+	<meta property="twitter:app:url:iphone" content="">
+	<meta property="twitter:app:name:ipad" content="">
+	<meta property="twitter:app:url:ipad" content="">
+	<meta property="twitter:app:id:googleplay" content="">
+	<meta property="twitter:app:url:googleplay" content="">
+
+	<!-- player -->
+	<meta property="twitter:url" content="">
+	<meta property="twitter:player" content="">
+	<meta property="twitter:player:width" content="">
+	<meta property="twitter:player:height" content="">
+	<meta property="twitter:player:stream" content="">
+	<meta property="twitter:player:stream:content_type" content="">
+	
+	<!-- product -->
+	<meta property="twitter:data1" content="">
+	<meta property="twitter:label1" content="">
+	<meta property="twitter:data2" content="">
+	<meta property="twitter:label2" content="">
+	<meta property="twitter:data(:nth)" content="">
+	<meta property="twitter:label(:nth)" content="">
+	<!-- TWITTER CARDS END -->
+	
+	<!-- MOBILE VIEWPORT START -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- MOBILE VIEWPORT END -->
+
+
+	<!-- STARTUP IMAGES START -->
+	<link rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" href="theme/images/ipad-landscape-1024x748.png" />
+	<link rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" href="theme/images/ipad-portrait-768x1004.png" />
+	<link rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)" href="theme/images/iphone-320x480.png" />
+	<link rel="apple-touch-startup-image" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" href="theme/images/iphone4-640x920.png">
+	<!-- STARTUP IMAGES END -->
+
+	
+	<!-- BOOKMARK ICONS START -->
+	<link rel="apple-touch-icon" sizes="114x114" href="theme/images/icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="theme/images/icon-72x72.png">
+	<link rel="apple-touch-icon" href="theme/images/icon-57x57.png">
+	<link rel="icon" href="icon.png" type="image/png" />
+	<!--<link rel="shortcut icon" href="favicon-16x16.ico" />-->
+	<!-- BOOKMARK ICONS END -->
+
+	
+	<!-- STYLES START -->
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		/* Space out content a bit */
+		body {
+		  padding-top: 20px;
+		  padding-bottom: 20px;
+		}
+
+		/* Everything but the jumbotron gets side spacing for mobile-first views */
+		.header,
+		.marketing,
+		.footer {
+		  padding-left: 15px;
+		  padding-right: 15px;
+		}
+
+		/* Custom page header */
+		.header {
+		  border-bottom: 1px solid #e5e5e5;
+		}
+		/* Make the masthead heading the same height as the navigation */
+		.header h3 {
+		  margin-top: 0;
+		  margin-bottom: 0;
+		  line-height: 40px;
+		  padding-bottom: 19px;
+		}
+
+		/* Custom page footer */
+		.footer {
+		  padding-top: 19px;
+		  color: #777;
+		  border-top: 1px solid #e5e5e5;
+		}
+
+		/* Custom container */
+		.container-narrow {
+		  margin: 0 auto;
+		  max-width: 700px;
+		}
+		.container-narrow > hr {
+		  margin: 30px 0;
+		}
+
+		/* Main marketing message and sign up button */
+		.jumbotron {
+		  text-align: center;
+		  border-bottom: 1px solid #e5e5e5;
+		}
+		.jumbotron .btn {
+		  font-size: 21px;
+		  padding: 14px 24px;
+		}
+
+		/* Supporting marketing content */
+		.marketing {
+		  margin: 40px 0;
+		}
+		.marketing p + h4 {
+		  margin-top: 28px;
+		}
+
+		/* Responsive: Portrait tablets and up */
+		@media screen and (min-width: 768px) {
+		  /* Remove the padding we set earlier */
+		  .header,
+		  .marketing,
+		  .footer {
+		    padding-left: 0;
+		    padding-right: 0;
+		  }
+		  /* Space out the masthead */
+		  .header {
+		    margin-bottom: 30px;
+		  }
+		  /* Remove the bottom border on the jumbotron for visual effect */
+		  .jumbotron {
+		    border-bottom: 0;
+		  }
+		}
+		/* Form style */
+		.form-signin {
+		  max-width: 330px;
+		  padding: 15px;
+		  margin: 0 auto;
+		}
+		.form-signin .form-signin-heading {
+		  margin-bottom: 10px;
+		}
+		.form-signin input[type="text"] {
+		  position: relative;
+		  font-size: 16px;
+		  width: 100%;
+		  height: auto;
+		  padding: 10px;
+		  -webkit-box-sizing: border-box;
+		     -moz-box-sizing: border-box;
+		          box-sizing: border-box;
+		}
+		.form-signin input[type="text"]:focus {
+		  z-index: 2;
+		}
+		.form-signin input[type="text"] {
+		  margin-bottom: 10px;
+		  border-bottom-left-radius: 0;
+		  border-bottom-right-radius: 0;
+		}
+		.form-signin div.alert input[type="text"] {
+			margin-bottom: 0;
+		}
+	</style>
+	<link rel="author" href="humans.txt">
+	<!--[if IE]> <link rel="stylesheet" type="text/css" href="theme/styles/ie.css" /> <![endif]-->
+	<!-- STYLES END -->
+
+</head>
+<body>
+
+	<!-- EFFECTIVE MEASURE START -->
+	<!-- EFFECTIVE MEASURE END -->
+
+
+	<!-- WRAPPER START -->
+	<div id="wrapper" class="container-narrow">
+		
+		<!-- HEADER START -->
+		<div class="header">
+			<h3 class="text-muted">Bandolier: Participant Sign-up</h3>
+		</div>
+		<!-- HEADER END -->
+
+
+		<!-- CONTENT START -->
+		<div class="jumbotron main" role="main">
+			{% block content %}
+				<h1>Place content here</h1>
+			{% endblock content %}
+		</div>
+		<!-- CONTENT END -->
+
+
+		<!-- FOOTER START -->
+		<footer class="footer main">
+			<p>
+				<a href="privacy.html" target="_blank">Privacy Statement</a>
+				<a href="terms.html" target="_blank">Terms of Use</a>
+				<a href="contact.html" target="_blank">Contact Us</a>
+				<a href="http://marketportal.abs-cbn.com" target="_blank">Advertise With Us</a>
+			</p>
+			<p>Copyright &copy; ABS-CBN Corporation. All Rights Reserved.</p>
+		</footer>
+		<!-- FOOTER END -->
+
+	</div>
+	<!-- WRAPPER END -->
+
+
+	<!-- GOOGLE ANALYTICS START -->
+	<!-- GOOGLE ANALYTICS END -->
+
+	<!-- NIELSEN ONLINE START -->
+	<!-- NIELSEN ONLINE END -->
+
+
+	<!-- SCRIPTS START -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="theme/scripts/jquery-1.10.2.min.js"><\/script>')</script>
+	<!-- SCRIPTS END -->
+
+</body>
+</html>
