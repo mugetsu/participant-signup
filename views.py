@@ -9,7 +9,7 @@ import os.path
 
 def entry(request):
 
-    current_url = request.build_absolute_uri()
+    current_url = request.get_host()
 
     if request.method == 'POST':
         form = EntryForm(request.POST)
@@ -45,7 +45,7 @@ def send_entry(name, email, current_url):
 	subjectAdmin = '%s registered.' % name
 	messageAdmin = '%s (%s) just have registered!' % (name, email)
 	subjectSender = '%s is now ready for confirmation.' % email
-	messageSender = '%s, to register (%s) please click this <a href="%s">link</a> to confirm.' % (name, email, reverse('confirm_entry', kwargs={ 'key': participant.key }))
+	messageSender = '%s, to register (%s) please click this <a href="%s%s">link</a> to confirm.' % (name, email, current_url, reverse('confirm_entry', kwargs={ 'key': participant.key }))
 
 	admin = 'bandolier.test@gmail.com'
 
