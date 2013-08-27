@@ -58,7 +58,6 @@
 
 		/* Main marketing message and sign up button */
 		.jumbotron {
-		  text-align: center;
 		  border-bottom: 1px solid #e5e5e5;
 		}
 		.jumbotron .btn {
@@ -99,12 +98,19 @@
 		}
 		/* Form style */
 		.form-signin {
-		  max-width: 330px;
+		  max-width: 360px;
 		  padding: 15px;
 		  margin: 0 auto;
 		}
 		.form-signin .form-signin-heading {
 		  margin-bottom: 10px;
+		  text-align: center;
+		}
+		.form-signin > div {
+			margin-bottom: 15px;
+		}
+		.form-signin > div:last-child {
+			margin-bottom: 0;
 		}
 		.form-signin input[type="text"] {
 		  position: relative;
@@ -120,12 +126,26 @@
 		  z-index: 2;
 		}
 		.form-signin input[type="text"] {
-		  margin-bottom: 10px;
 		  border-bottom-left-radius: 0;
 		  border-bottom-right-radius: 0;
 		}
-		.form-signin div.alert input[type="text"] {
-			margin-bottom: 0;
+		.form-signin label[for*="id_birthday_"],
+		.form-signin label[for="id_media"] {
+			font-size: 16px;
+			font-weight: normal;
+		}
+		.form-signin input[type="file"] {
+			display: inline;
+			width: 250px;
+			font-size: 12px;
+			line-height: 0;
+		}
+		.form-signin .alert-danger > input[type="file"] {
+			width: 220px;
+		}
+		.form-signin input[type="file"] + span {
+			font-size: 12px;
+			font-weight: bold;
 		}
 	</style>
 	<link rel="author" href="humans.txt">

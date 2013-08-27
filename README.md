@@ -42,15 +42,37 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 ```
 
-### 5. Include the faqs URLconf in your project `urls.py` like this:
+### 5. Include the participant_signup URLconf in your project `urls.py` like this:
 
 ```
 #!python
     url(r'^participant-signup/', include('apps.participant_signup.urls')),
 ```
 
-### 6. Run `python manage.py syncdb` to create the participant_signup models.
+and also add static file dir for user-uploaded files, it should look something like this:
 
-### 7. Run `python manage.py runserver` then Visit `http://127.0.0.1:8000/participant-signup/` to view the Participant Signup form.
+```
+#!python
+    urlpatterns = patterns('',
+    	url(r'^admin/', include(admin.site.urls)),
+    	url(r'^media/(.*)$', 'django.views.static.serve', { 'document_root': settings.MEDIA_ROOT }),
+    	(r'^participant-signup/', include('apps.participant_signup.urls')),
+	) + static(settings.MEDIA_URL, PROJECT_ROOT=settings.MEDIA_ROOT)
+```
 
-### 8. To check Participant(s), visit Admin `http://127.0.0.1:8000/participant-signup/admin/`
+### 6. Add extra customization on admin view (CSS & JS for Admin media viewer):
+
+```
+#!python
+    STATIC_URL = '/theme/'
+
+	STATICFILES_DIRS = (
+	    PROJECT_ROOT.child('apps').child('participant_signup').child('theme'),
+	)
+```
+
+### 7. Run `python manage.py syncdb` to create the participant_signup models.
+
+### 8. Run `python manage.py runserver` then Visit `http://127.0.0.1:8000/participant-signup/` to view the Participant Signup form.
+
+### 9. To check Participant(s), visit Admin `http://127.0.0.1:8000/participant-signup/admin/`
