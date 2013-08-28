@@ -1,9 +1,9 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
+from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.conf import settings
-from django.core import mail
 from .models import Participant
 from .forms import EntryForm
 
@@ -16,17 +16,26 @@ def entry(request):
 		form = EntryForm(request.POST, request.FILES)
 		
 		if form.is_valid():
+
 			email = form.cleaned_data['email']
 			last_name = form.cleaned_data['last_name']
 			first_name = form.cleaned_data['first_name']
-			name = first_name + ' ' + last_name
 			birthday = form.cleaned_data['birthday']
 			contact = form.cleaned_data['contact']
 			media = request.FILES['media']
 
-			participant = Participant(last_name=last_name, first_name=first_name, email=email, contact=contact, birthday=birthday, media=media, confirmed=False)
+			participant = Participant(
+				last_name=last_name,
+				first_name=first_name,
+				email=email,
+				contact=contact,
+				birthday=birthday,
+				media=media,
+				confirmed=False,
+			)
+
 			participant.save()
-			send_entry(name, email, current_url)
+			send_entry(email, current_url)
 			return HttpResponseRedirect('thanks')
 
 	else:
@@ -37,25 +46,20 @@ def entry(request):
 def thanks(request):
 	return render(request, 'participant-signup/thanks.html')
 
-def send_entry(name, email, current_url):
-	participant = Participant.objects.get(email=email)
+def send_entry(pk, current_url):
 
-	subjectAdmin = '%s registered.' % name
-	messageAdmin = '%s (%s) just have registered!' % (name, email)
-	subjectSender = '%s is now ready for confirmation.' % email
-	messageSender = '%s, to completely register (%s) please click this <a href="%s%s">link</a> to confirm.' % (name, email, current_url, reverse('confirm_entry', kwargs={ 'key': participant.key }))
+	participant = Participant.objects.get(email=pk)
 
-	admin = 'bandolier.test@gmail.com'
+	email = pk
+	admin_email = 'bandolier.test@gmail.com'
+	full_name = participant.first_name + ' ' + participant.last_name
 
-	connection = mail.get_connection()
-
-	connection.open()
-
-	notifySender = mail.EmailMessage(subjectSender, messageSender, admin, [email])
-	notifyAdmin = mail.EmailMessage(subjectAdmin, messageAdmin, admin, [admin])
-
-	connection.send_messages([notifySender, notifyAdmin])
-	connection.close()
+	subject, from_email, to = '%s is now ready for confirmation.' % email, admin_email, email
+	html_content = 'Your entry details:<br/> <b>Name:</b> <i>%s</i><br/> <b>Birthday:</b> <i>%s</i><br/> <b>Email:</b> <i>%s</i><br/> <b>Contact:</b> <i>%s</i>, to complete your entry submission.<br/>Please click this <a href="http://%s%s">link</a> to confirm.' % (full_name, participant.birthday, email, participant.contact, current_url, reverse('confirm_entry', kwargs={ 'key': participant.key }))
+	notifyParticipant = EmailMultiAlternatives(subject, html_content, from_email, [to])
+	notifyParticipant.content_subtype = 'html'
+	# notifyParticipant.attach_alternative(html_content, 'text/html') #media attach
+	notifyParticipant.send()
 
 def confirm_entry(request, key):
 	try:
