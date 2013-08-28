@@ -39,7 +39,4 @@ class Participant(models.Model):
 		return self
 
 	def __unicode__(self):
-		return self.email_plural = 'Participants'
-
-	def __unicode__(self):
 		return self.email

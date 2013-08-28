@@ -1,11 +1,10 @@
-from django.db import models
 from django import forms
 from datetime import datetime
 from django.conf import settings
-from .models import Participant
 from django.forms import widgets, extras
-from django.utils.translation import ugettext_lazy as _
 from django.template.defaultfilters import filesizeformat
+from django.utils.translation import ugettext_lazy as _
+from .models import Participant
 
 class EntryForm(forms.ModelForm):
 
@@ -50,23 +49,16 @@ class EntryForm(forms.ModelForm):
             raise forms.ValidationError(u'This email address already exist.')
         return email
 
-    def clean_media(self):
+    def clean_media(self):        
         media = self.cleaned_data.get('media')
         try:
-            if media:
-                file_type = media.content_type.split('/')[0]
-                print file_type
-
-                if len(media.name.split('.')) == 1:
-                    raise forms.ValidationError(u'File type is not supported.')
-
-                if file_type in settings.UPLOAD_FILE_TYPES:
-                    if media._size > settings.UPLOAD_FILE_MAX_SIZE:
-                            raise forms.ValidationError(u'Please keep filesize under %s. Current filesize %s.') % (filesizeformat(settings.UPLOAD_FILE_MAX_SIZE), filesizeformat(media._size))
-                else:
-                    raise forms.ValidationError(u'File type is not supported.')
-        except:
-            pass
-
+            content_type = media.content_type
+            if content_type in settings.FILE_UPLOAD_TYPES:
+                if media._size > settings.FILE_UPLOAD_MAX_MEMORY_SIZE:
+                    raise forms.ValidationError(_('Please keep filesize under %s. Current filesize %s') % (filesizeformat(settings.FILE_UPLOAD_MAX_MEMORY_SIZE), filesizeformat(media._size)))
+            else:
+                raise forms.ValidationError(_('Filetype not supported.'))
+        except AttributeError:
+            pass        
+            
         return media
-

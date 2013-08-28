@@ -60,7 +60,24 @@ and also add static file dir for user-uploaded files, it should look something l
 	) + static(settings.MEDIA_URL, PROJECT_ROOT=settings.MEDIA_ROOT)
 ```
 
-### 6. Add extra customization on admin view (CSS & JS for Admin media viewer):
+### 6. Also include file upload restrictions on settings.py:
+
+```
+#!python
+	# Limit file uploads
+	# 2.5MB - 2621440
+	# 5MB - 5242880
+	# 10MB - 10485760
+	# 20MB - 20971520
+	# 50MB - 52428800
+	# 100MB 104857600
+	# 250MB - 214958080
+	# 500MB - 429916160
+	FILE_UPLOAD_TYPES = ['image/jpeg', 'image/png']
+	FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880
+```
+
+### 7. Add extra customization on admin view (CSS & JS for Admin media viewer):
 
 ```
 #!python
@@ -71,8 +88,8 @@ and also add static file dir for user-uploaded files, it should look something l
 	)
 ```
 
-### 7. Run `python manage.py syncdb` to create the participant_signup models.
+### 8. Run `python manage.py syncdb` to create the participant_signup models.
 
-### 8. Run `python manage.py runserver` then Visit `http://127.0.0.1:8000/participant-signup/` to view the Participant Signup form.
+### 9. Run `python manage.py runserver` then Visit `http://127.0.0.1:8000/participant-signup/` to view the Participant Signup form.
 
-### 9. To check Participant(s), visit Admin `http://127.0.0.1:8000/participant-signup/admin/`
+### 10. To check Participant(s), visit Admin `http://127.0.0.1:8000/participant-signup/admin/`

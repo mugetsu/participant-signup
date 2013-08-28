@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
+from django.conf import settings
 from django.core import mail
 from .models import Participant
 from .forms import EntryForm
@@ -9,7 +10,7 @@ from .forms import EntryForm
 def entry(request):
 
 	current_url = request.get_host()
-
+	
 	if request.method == 'POST':
 		
 		form = EntryForm(request.POST, request.FILES)
@@ -23,14 +24,10 @@ def entry(request):
 			contact = form.cleaned_data['contact']
 			media = request.FILES['media']
 
-			if email == 'cprjk.buzz@gmail.com':
-				return render(request, 'participant-signup/404.html')
-
-			else:
-				participant = Participant(last_name=last_name, first_name=first_name, email=email, contact=contact, birthday=birthday, media=media, confirmed=False)
-				participant.save()
-				send_entry(name, email, current_url)
-				return HttpResponseRedirect('thanks')
+			participant = Participant(last_name=last_name, first_name=first_name, email=email, contact=contact, birthday=birthday, media=media, confirmed=False)
+			participant.save()
+			send_entry(name, email, current_url)
+			return HttpResponseRedirect('thanks')
 
 	else:
 		form = EntryForm()
@@ -65,13 +62,6 @@ def confirm_entry(request, key):
 		participant = Participant.objects.get(key=key)
 	except Participant.DoesNotExist:
 		template = 'participant-signup/404.html'
-	else:
-		participant.confirmed = True
-		participant.save()
-		template = 'participant-signup/confirm.html'
-
-	return render(request, template)
-'
 	else:
 		participant.confirmed = True
 		participant.save()
